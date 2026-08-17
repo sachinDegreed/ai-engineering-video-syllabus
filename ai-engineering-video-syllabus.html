@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Engineering — Video Syllabus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1220; --bg2:#0e1626; --panel:#131d31; --panel2:#17233b;
+    --line:#25344d; --line-soft:#1b2740;
+    --text:#e7eef7; --dim:#9fb0ca; --faint:#657ea3;
+    --cyan:#5cc0df; --amber:#e8a13a; --done:#54caa0; --violet:#a99cf2; --rose:#e88a8a;
+    --r:13px;
+  }
+  html[data-theme="light"]{
+    --bg:#f6f4ee; --bg2:#efece3; --panel:#ffffff; --panel2:#f3f0e8;
+    --line:#ddd6c6; --line-soft:#e7e1d3;
+    --text:#1c2330; --dim:#4a566b; --faint:#7d8aa0;
+    --cyan:#1f7fa0; --amber:#b4700f; --done:#1f8a63; --violet:#6b4fd0; --rose:#c0392b;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.6;
+    -webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+  #topbar{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;background:linear-gradient(90deg,var(--cyan),var(--done));transition:width .1s}
+  .shell{display:grid;grid-template-columns:250px 1fr;max-width:1100px;margin:0 auto}
+  aside{position:sticky;top:0;height:100vh;overflow-y:auto;padding:32px 22px;border-right:1px solid var(--line-soft);background:var(--bg)}
+  .brand{font-family:'Space Grotesk';font-weight:700;font-size:18px;line-height:1.2}
+  .brand .a{color:var(--cyan)}
+  .brand-sub{font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:4px 0 22px}
+  nav a{display:block;font-family:'IBM Plex Mono';font-size:12px;color:var(--dim);text-decoration:none;padding:6px 10px;border-radius:7px;border-left:2px solid transparent;transition:.15s}
+  nav a .wn{color:var(--faint);margin-right:7px}
+  nav a:hover{background:var(--panel2);color:var(--text)}
+  nav a.active{color:var(--cyan);border-left-color:var(--cyan);background:var(--panel2)}
+  nav a.active .wn{color:var(--cyan)}
+  .themebtn{margin-top:22px;background:transparent;border:1px solid var(--line);color:var(--dim);font-family:'IBM Plex Mono';font-size:11px;padding:8px 12px;border-radius:8px;cursor:pointer;width:100%;transition:.15s}
+  .themebtn:hover{border-color:var(--cyan);color:var(--cyan)}
+  main{padding:52px 5vw 120px;min-width:0}
+  .kicker{font-family:'IBM Plex Mono';font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
+  h1{font-family:'Space Grotesk';font-weight:700;font-size:clamp(30px,5vw,46px);line-height:1.05;letter-spacing:-.02em;margin:0 0 16px}
+  .lede{font-size:17px;color:var(--dim);max-width:60ch;margin:0 0 8px}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:22px 0 4px;font-family:'IBM Plex Mono';font-size:11px;color:var(--faint)}
+  .legend b{color:var(--dim);font-weight:500}
+
+  .power{background:linear-gradient(160deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;margin:30px 0 8px}
+  .power h3{font-family:'Space Grotesk';font-weight:600;font-size:15px;margin:0 0 4px}
+  .power p{font-size:13px;color:var(--faint);margin:0 0 14px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  a.chip{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-family:'IBM Plex Mono';font-size:12px;color:var(--dim);background:var(--panel2);border:1px solid var(--line-soft);padding:7px 11px;border-radius:8px;transition:.15s}
+  a.chip:hover{border-color:var(--cyan);color:var(--cyan)}
+  a.chip .arw{color:var(--faint)}
+  a.chip:hover .arw{color:var(--cyan)}
+
+  section{padding-top:52px}
+  .modhead{display:flex;align-items:baseline;gap:12px;margin-bottom:4px}
+  .modhead .mn{font-family:'IBM Plex Mono';font-size:13px;color:var(--cyan);flex-shrink:0}
+  .modhead h2{font-family:'Space Grotesk';font-weight:700;font-size:clamp(21px,3vw,27px);letter-spacing:-.015em;margin:0;scroll-margin-top:20px}
+  .modsub{font-size:13.5px;color:var(--faint);margin:0 0 18px;padding-left:2px}
+
+  .rows{display:flex;flex-direction:column;gap:9px}
+  a.row{display:grid;grid-template-columns:150px 1fr auto;gap:16px;align-items:center;text-decoration:none;color:inherit;
+    background:var(--panel);border:1px solid var(--line-soft);border-radius:11px;padding:13px 16px;transition:.15s}
+  a.row:hover{border-color:var(--cyan);background:var(--panel2)}
+  a.row:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+  .concept{font-family:'IBM Plex Mono';font-size:12px;color:var(--dim);line-height:1.4}
+  .vid .vt{font-weight:600;font-size:14.5px;color:var(--text)}
+  .vid .vc{font-size:12.5px;color:var(--faint);margin-top:1px}
+  .vid .vn{font-size:12.5px;color:var(--dim);margin-top:4px}
+  .badge{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:6px;white-space:nowrap;align-self:flex-start;font-weight:500}
+  .b-deep{background:rgba(169,156,242,.14);color:var(--violet)}
+  .b-visual{background:rgba(92,192,223,.14);color:var(--cyan)}
+  .b-explain{background:rgba(84,202,160,.14);color:var(--done)}
+  .b-build{background:rgba(232,161,58,.15);color:var(--amber)}
+  .b-course{background:rgba(232,138,138,.14);color:var(--rose)}
+  .arw2{color:var(--faint);font-size:13px}
+  a.row:hover .arw2{color:var(--cyan)}
+
+  .note{font-size:12.5px;color:var(--faint);margin:14px 0 0;padding-left:2px;max-width:70ch}
+  footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--line-soft);color:var(--faint);font-size:12.5px;line-height:1.7;max-width:74ch}
+
+  .mobilebar{display:none}
+  @media(max-width:860px){
+    .shell{grid-template-columns:1fr}
+    aside{display:none}
+    main{padding:22px 20px 100px}
+    a.row{grid-template-columns:1fr;gap:6px;padding:14px}
+    .concept{color:var(--cyan)}
+    .arw2{display:none}
+    .mobilebar{display:flex;position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line-soft);
+      padding:12px 16px;align-items:center;justify-content:space-between;gap:12px}
+    .mobilebar .mb{font-family:'Space Grotesk';font-weight:700;font-size:15px}
+    .mobilebar select{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-family:'IBM Plex Mono';font-size:12px;max-width:52vw}
+    .mobilebar .themebtn{margin:0;width:auto;padding:7px 10px}
+  }
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="topbar"></div>
+<div class="mobilebar">
+  <span class="mb">Video Syllabus</span>
+  <select id="mobnav" aria-label="Jump to module"></select>
+  <button class="themebtn" id="theme-m">◐</button>
+</div>
+
+<div class="shell">
+  <aside>
+    <div class="brand">AI Engineering<br><span class="a">Video Syllabus</span></div>
+    <div class="brand-sub">watch-along, per module</div>
+    <nav id="toc"></nav>
+    <button class="themebtn" id="theme">Toggle light / dark</button>
+  </aside>
+
+  <main>
+    <div class="kicker">Companion to the course · every section</div>
+    <h1>The whole track,<br>on video</h1>
+    <p class="lede">A hand-picked YouTube link for each module and sub-topic of the course. Ordered intro → deep dive → build-along, so you can watch the level you need and skip the rest.</p>
+    <div class="legend">
+      <span><b>VISUAL</b> intuition-first</span>
+      <span><b>EXPLAINER</b> short concept</span>
+      <span><b>DEEP DIVE</b> full mechanism</span>
+      <span><b>BUILD</b> code-along</span>
+      <span><b>COURSE</b> multi-hour</span>
+    </div>
+
+    <div class="power">
+      <h3>Five channels that cover most of this</h3>
+      <p>If you subscribe to these, you've got 90% of the course on tap. Rows below point to specific videos on them.</p>
+      <div class="chips">
+        <a class="chip" href="https://www.youtube.com/@AndrejKarpathy/videos" target="_blank" rel="noopener">Andrej Karpathy <span class="arw">↗</span></a>
+        <a class="chip" href="https://www.3blue1brown.com/topics/neural-networks" target="_blank" rel="noopener">3Blue1Brown <span class="arw">↗</span></a>
+        <a class="chip" href="https://www.youtube.com/@statquest" target="_blank" rel="noopener">StatQuest <span class="arw">↗</span></a>
+        <a class="chip" href="https://www.youtube.com/@umarjamilai" target="_blank" rel="noopener">Umar Jamil <span class="arw">↗</span></a>
+        <a class="chip" href="https://www.youtube.com/@IBMTechnology/videos" target="_blank" rel="noopener">IBM Technology <span class="arw">↗</span></a>
+      </div>
+    </div>
+
+    <div id="mods"></div>
+
+    <footer>
+      Links were checked when this was built. Rows marked "on their channel" point to the creator's page with the exact title named — search that title if the row doesn't jump straight to it, since single-video URLs occasionally change. Full-length "deep dive" and "course" videos are worth the time investment; the short explainers are for when you just need the concept to click. Pair each row with the matching module in the written course.
+    </footer>
+  </main>
+</div>
+
+<script>
+const B = {deep:"b-deep",visual:"b-visual",explain:"b-explain",build:"b-build",course:"b-course"};
+const BL = {deep:"Deep dive",visual:"Visual",explain:"Explainer",build:"Build",course:"Course"};
+
+const MODULES = [
+  { id:"m1", n:"How LLMs Work & Training", sub:"tokens · attention · pretraining · decoding",
+    rows:[
+      {c:"Whole module", t:"Deep Dive into LLMs like ChatGPT", by:"Andrej Karpathy", note:"3.5 hrs. The single best overview of the full training stack, no math required.", u:"https://www.youtube.com/watch?v=7xTGNNLPyMI", b:"course"},
+      {c:"Tokenization", t:"Let's build the GPT Tokenizer", by:"Andrej Karpathy", note:"Build byte-pair encoding from scratch; explains the arithmetic/spelling quirks.", u:"https://www.youtube.com/watch?v=zduSFxRajkE", b:"build"},
+      {c:"Transformers (intuition)", t:"But what is a GPT? Visual intro to transformers", by:"3Blue1Brown", note:"The embeddings → attention → logits pipeline, animated.", u:"https://www.youtube.com/watch?v=wjZofJX0v4M", b:"visual"},
+      {c:"Attention (intuition)", t:"Attention in transformers, step-by-step", by:"3Blue1Brown", note:"Q/K/V and the √d_k scaling made visual. (Lesson page has the video.)", u:"https://www.3blue1brown.com/lessons/attention/", b:"visual"},
+      {c:"Fundamentals (gentle)", t:"'Transformer Neural Networks' & 'Attention Clearly Explained'", by:"StatQuest — on their channel", note:"Slowest, clearest path if the above move too fast.", u:"https://www.youtube.com/@statquest", b:"explain"},
+      {c:"Build a GPT in code", t:"Let's build GPT: from scratch, in code, spelled out", by:"Andrej Karpathy (Zero to Hero)", note:"Code the whole thing incl. positional encoding, sampling, temperature.", u:"https://karpathy.ai/zero-to-hero.html", b:"build"},
+    ]},
+  { id:"m2", n:"Quantization & Fine-Tuning", sub:"precision · LoRA · QLoRA · when to fine-tune",
+    rows:[
+      {c:"Fine-tuning map", t:"Fine-Tuning & PEFT: LoRA, QLoRA, RLHF, DPO", by:"YouTube — full walkthrough", note:"One video situating every adaptation method and when each applies.", u:"https://www.youtube.com/watch?v=KscmerlQBuM", b:"explain"},
+      {c:"Quantization", t:"'What is Quantization?' / 'LLM Quantization'", by:"IBM Technology — on their channel", note:"Why FP16→INT4 shrinks VRAM and what it costs in accuracy.", u:"https://www.youtube.com/@IBMTechnology/videos", b:"explain"},
+      {c:"LoRA (deep)", t:"LoRA: Low-Rank Adaptation — explained + from scratch", by:"Umar Jamil — on their channel", note:"The math of W+BA and a from-scratch PyTorch implementation.", u:"https://www.youtube.com/@umarjamilai", b:"deep"},
+      {c:"LoRA & QLoRA (quick)", t:"LoRA & QLoRA Explained Simply", by:"YouTube — intuition + practical", note:"Full-FT vs PEFT with intuition and a practical run.", u:"https://www.youtube.com/watch?v=cO6Ly7mIziQ", b:"explain"},
+    ]},
+  { id:"m3", n:"Retrieval-Augmented Generation", sub:"embeddings · chunking · ANN · vector DBs",
+    rows:[
+      {c:"Whole module", t:"Optimize RAG with AI Agents & Vector Databases", by:"IBM Technology", note:"End-to-end RAG with the retrieval pieces named.", u:"https://www.youtube.com/watch?v=Yq29bZ8Hlrc", b:"explain"},
+      {c:"What is RAG", t:"'What is Retrieval-Augmented Generation (RAG)?'", by:"IBM Technology — on their channel", note:"The 'open-book exam' framing; the canonical short intro.", u:"https://www.youtube.com/@IBMTechnology/videos", b:"explain"},
+      {c:"Embeddings", t:"'What are Word/Vector Embeddings?'", by:"IBM Technology — on their channel", note:"Why similar meaning = nearby vectors; cosine similarity.", u:"https://www.youtube.com/@IBMTechnology/videos", b:"explain"},
+      {c:"Vector DBs & ANN", t:"'What is a Vector Database?'", by:"IBM Technology — on their channel", note:"Where HNSW/IVF and metadata filtering fit.", u:"https://www.youtube.com/@IBMTechnology/videos", b:"explain"},
+    ]},
+  { id:"m4", n:"Production RAG & Safety", sub:"reranking · HyDE · guardrails · injection",
+    rows:[
+      {c:"Advanced RAG", t:"RAG's Evolution: From Simple Retrieval to Agentic AI", by:"IBM Technology", note:"Reranking, query rewriting, and where naive RAG breaks.", u:"https://www.youtube.com/watch?v=JB2P5Gk23VI", b:"explain"},
+      {c:"Guardrails", t:"'AI Guardrails' / 'LLM Guardrails'", by:"IBM Technology — on their channel", note:"Input/output checks around the model.", u:"https://www.youtube.com/@IBMTechnology/videos", b:"explain"},
+      {c:"Prompt injection", t:"'Prompt Injection' explained", by:"IBM Technology — on their channel", note:"Direct vs indirect; why RAG is uniquely exposed.", u:"https://www.youtube.com/@IBMTechnology/videos", b:"explain"},
+    ]},
+  { id:"m5", n:"Agents & Tool Calling", sub:"tool use · ReAct · orchestration · routing",
+    rows:[
+      {c:"Whole module", t:"How AI Agents Actually Work — Complete Agentic AI Course", by:"YouTube — full course", note:"RAG, embeddings, vector DBs, tools and MCP fitted together.", u:"https://www.youtube.com/watch?v=UavViQDvDk8", b:"course"},
+      {c:"What is an agent", t:"'What are AI Agents?'", by:"IBM Technology — on their channel", note:"The LLM-in-a-loop definition and the autonomy spectrum.", u:"https://www.youtube.com/@IBMTechnology/videos", b:"explain"},
+      {c:"Tool calling & ReAct", t:"Optimize RAG with AI Agents & Vector Databases", by:"IBM Technology", note:"Shows the reason→act→observe loop in practice.", u:"https://www.youtube.com/watch?v=Yq29bZ8Hlrc", b:"explain"},
+    ]},
+  { id:"m6", n:"MCP, Context Engineering, Multi-Agent", sub:"MCP · context budget · memory · multi-agent",
+    rows:[
+      {c:"MCP", t:"What is MCP? Integrate AI Agents with Databases & APIs", by:"IBM Technology", note:"Tools/resources/prompts and why the protocol exists.", u:"https://www.youtube.com/watch?v=eur8dUO9mvE", b:"explain"},
+      {c:"MCP vs RAG", t:"MCP vs RAG: How AI Agents & LLMs Connect to Data", by:"IBM Technology", note:"Clean mental model: MCP = plumbing, RAG = knowledge.", u:"https://www.youtube.com/watch?v=X95MFcYH1_s", b:"explain"},
+      {c:"Context engineering", t:"Covered in the Agentic AI course", by:"YouTube — full course", note:"Context-as-budget, compaction, memory; watch the context section.", u:"https://www.youtube.com/watch?v=UavViQDvDk8", b:"course"},
+      {c:"Multi-agent", t:"'Multi-Agent Systems' explained", by:"IBM Technology — on their channel", note:"Orchestrator–worker and when multiple agents actually help.", u:"https://www.youtube.com/@IBMTechnology/videos", b:"explain"},
+    ]},
+  { id:"m7", n:"Evals & Production", sub:"eval sets · LLM-as-judge · faithfulness",
+    rows:[
+      {c:"Evals & LLM-as-judge", t:"LLM as a judge & other ways to evaluate agents", by:"IBM Technology", note:"Judging trajectories, plus judge bias to watch for.", u:"https://www.youtube.com/watch?v=ABVDjdPMccE", b:"explain"},
+      {c:"Evaluating LLMs", t:"'How to Evaluate LLMs' / 'LLM Evaluation Metrics'", by:"IBM Technology — on their channel", note:"Reference-based vs reference-free vs human.", u:"https://www.youtube.com/@IBMTechnology/videos", b:"explain"},
+    ]},
+  { id:"m8", n:"Agentic System Design", sub:"scale · reliability · cost · observability",
+    rows:[
+      {c:"Production agents", t:"How AI Agents Actually Work — Complete Agentic AI Course", by:"YouTube — full course", note:"Watch the architecture/reliability half for scaling patterns.", u:"https://www.youtube.com/watch?v=UavViQDvDk8", b:"course"},
+      {c:"RAG → agentic at scale", t:"RAG's Evolution: From Simple Retrieval to Agentic AI", by:"IBM Technology", note:"How pipelines evolve toward autonomous, tool-using systems.", u:"https://www.youtube.com/watch?v=JB2P5Gk23VI", b:"explain"},
+    ]},
+  { id:"m9", n:"Multimodal & Reasoning", sub:"CLIP · diffusion · CoT · RLHF",
+    rows:[
+      {c:"CLIP & multimodal", t:"'CLIP explained' / 'Vision Transformer'", by:"Umar Jamil — on their channel", note:"Contrastive text–image training and the shared embedding space.", u:"https://www.youtube.com/@umarjamilai", b:"deep"},
+      {c:"Diffusion (deep)", t:"Coding Stable Diffusion from scratch", by:"Umar Jamil — on their channel", note:"Forward/reverse process, latent diffusion, text conditioning.", u:"https://www.youtube.com/@umarjamilai", b:"deep"},
+      {c:"Diffusion (quick)", t:"Diffusion Models — Explained!", by:"YouTube — high-level intro", note:"The denoising idea in a few minutes before the deep dive.", u:"https://www.youtube.com/watch?v=3qLq-4Tmd3g", b:"explain"},
+      {c:"RLHF (clear)", t:"RLHF, Clearly Explained!!!", by:"StatQuest", note:"Reward model → PPO, the gentle version.", u:"https://www.youtube.com/watch?v=qPN_XZcJf_s", b:"explain"},
+      {c:"RLHF (deep + code)", t:"RLHF explained with math & PyTorch", by:"Umar Jamil", note:"Full derivation and implementation, incl. DPO context.", u:"https://www.youtube.com/watch?v=qGyFrqc34yc", b:"deep"},
+      {c:"RLHF (applied)", t:"Reinforcement Learning from Human Feedback (RLHF) Explained", by:"IBM Technology", note:"The four-step pipeline, quick and applied.", u:"https://www.youtube.com/watch?v=T_X4XFwKX8k", b:"explain"},
+    ]},
+  { id:"m10", n:"Capstone", sub:"eval-first · production checklist",
+    rows:[
+      {c:"Build reference", t:"How AI Agents Actually Work — Complete Agentic AI Course", by:"YouTube — full course", note:"Use as the shape for an end-to-end capstone build.", u:"https://www.youtube.com/watch?v=UavViQDvDk8", b:"course"},
+      {c:"Full build-along", t:"Neural Networks: Zero to Hero (build up to a GPT)", by:"Andrej Karpathy", note:"If your capstone is model-level, this is the build spine.", u:"https://karpathy.ai/zero-to-hero.html", b:"build"},
+    ]},
+];
+
+/* render */
+const mods = document.getElementById("mods");
+const toc = document.getElementById("toc");
+const mobnav = document.getElementById("mobnav");
+let tocHTML = "";
+mods.innerHTML = MODULES.map((m,i)=>{
+  const wn = m.id==="m10" ? "10" : "0"+m.id.slice(1);
+  tocHTML += `<a href="#${m.id}" data-id="${m.id}"><span class="wn">${wn}</span>${m.n}</a>`;
+  const o=document.createElement("option"); o.value=m.id; o.textContent=wn+" · "+m.n; mobnav.appendChild(o);
+  const rows = m.rows.map(r=>`
+    <a class="row" href="${r.u}" target="_blank" rel="noopener noreferrer">
+      <div class="concept">${r.c}</div>
+      <div class="vid"><div class="vt">${r.t}</div><div class="vc">${r.by}</div><div class="vn">${r.note}</div></div>
+      <span class="badge ${B[r.b]}">${BL[r.b]}</span>
+      <span class="arw2">↗</span>
+    </a>`).join("");
+  return `<section id="${m.id}">
+    <div class="modhead"><span class="mn">MODULE ${wn}</span><h2>${m.n}</h2></div>
+    <p class="modsub">${m.sub}</p>
+    <div class="rows">${rows}</div>
+  </section>`;
+}).join("");
+toc.innerHTML = tocHTML;
+const navLinks = [...toc.querySelectorAll("a")];
+mobnav.addEventListener("change",e=>{const el=document.getElementById(e.target.value); if(el) el.scrollIntoView();});
+
+/* scroll spy + progress */
+const secs = MODULES.map(m=>document.getElementById(m.id));
+const topbar=document.getElementById("topbar");
+function onScroll(){
+  const st=window.scrollY,h=document.documentElement.scrollHeight-window.innerHeight;
+  topbar.style.width=(h>0?st/h*100:0)+"%";
+  let cur=secs[0].id;
+  for(const s of secs){ if(s.getBoundingClientRect().top<=130) cur=s.id; }
+  navLinks.forEach(a=>a.classList.toggle("active",a.dataset.id===cur));
+  const opt=[...mobnav.options].find(o=>o.value===cur); if(opt) mobnav.value=cur;
+}
+window.addEventListener("scroll",onScroll,{passive:true});
+window.addEventListener("resize",onScroll); onScroll();
+
+/* theme */
+const root=document.documentElement;
+async function setTheme(t,save){root.setAttribute("data-theme",t);
+  if(save){try{if(window.storage&&window.storage.set)await window.storage.set("aieng_theme",t,false);}catch(e){}}}
+function toggle(){setTheme(root.getAttribute("data-theme")==="dark"?"light":"dark",true);}
+document.getElementById("theme").addEventListener("click",toggle);
+document.getElementById("theme-m").addEventListener("click",toggle);
+(async()=>{try{if(window.storage&&window.storage.get){const r=await window.storage.get("aieng_theme",false); if(r&&r.value) setTheme(r.value,false);}}catch(e){}})();
+</script>
+</body>
+</html>
